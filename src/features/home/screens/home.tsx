@@ -8,14 +8,14 @@ import {
   Image,
 } from "react-native";
 import { TextInput } from "react-native-paper";
-
-import { trending_auctions } from "../../../../database/trending_auctions";
 import { category_icons } from "../../../../database/category_icons";
 import { upcoming_auctions } from "../../../../database/upcoming_auctions";
 import FloatingBottomTab from "../../../components/floatingBottomTab";
+import TrendingAuctions from "../../../components/trendingAuctions";
 
 export default function Home() {
   const screenWidth = Dimensions.get("window").width;
+
   return (
     <View style={styles.container}>
       {/* salutation */}
@@ -100,7 +100,7 @@ export default function Home() {
             fontWeight: "500",
           }}
         >
-          Upcoming Aunctions
+          Upcoming Auctions
         </Text>
         <FlatList
           style={{
@@ -142,53 +142,7 @@ export default function Home() {
         />
 
         {/* Trending aution section */}
-        <Text
-          style={{
-            paddingLeft: 20,
-            marginBottom: 20,
-            fontSize: 16,
-            fontWeight: "500",
-          }}
-        >
-          Trending Aunctions
-        </Text>
-        <FlatList
-          style={{
-            paddingHorizontal: 20,
-            flexGrow: 0,
-            marginBottom: 20,
-            flexShrink: 0,
-          }}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ alignItems: "center", paddingRight: 40 }}
-          data={trending_auctions}
-          horizontal={true}
-          ItemSeparatorComponent={({ highlighted }) => (
-            <View style={{ marginHorizontal: 10 }}></View>
-          )}
-          renderItem={({ item }) => (
-            <View style={{ width: 130, alignItems: "center" }}>
-              <Image
-                source={{ uri: item.image }}
-                style={{
-                  height: 140,
-                  width: 130,
-                  borderRadius: 20,
-                  backgroundColor: "black",
-                }}
-              />
-              <Text
-                style={{
-                  fontSize: 14,
-                  marginTop: 5,
-                }}
-              >
-                {item.name}
-              </Text>
-            </View>
-          )}
-          keyExtractor={(item) => item._id}
-        />
+        <TrendingAuctions />
       </ScrollView>
       <FloatingBottomTab />
     </View>
