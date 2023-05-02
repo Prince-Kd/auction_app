@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import { TextInput } from "react-native-paper";
 
-export default function Login({ navigation } ) {
+export default function Login({ navigation } : any ) {
   const screenHeight = Dimensions.get("window").height;
   return (
     <KeyboardAvoidingView

@@ -13,7 +13,7 @@ import { upcoming_auctions } from "../../../../database/upcoming_auctions";
 import FloatingBottomTab from "../../../components/floatingBottomTab";
 import TrendingAuctions from "../../../components/trendingAuctions";
 
-export default function Home() {
+export default function Home({navigation} : any) {
   const screenWidth = Dimensions.get("window").width;
 
   return (
@@ -142,7 +142,7 @@ export default function Home() {
         />
 
         {/* Trending aution section */}
-        <TrendingAuctions />
+        <TrendingAuctions navigation={navigation} />
       </ScrollView>
       <FloatingBottomTab />
     </View>

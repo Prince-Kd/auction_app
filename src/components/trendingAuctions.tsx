@@ -1,7 +1,7 @@
 import { View, Text, FlatList, Image, TouchableOpacity } from "react-native";
 import { trending_auctions } from "../../database/trending_auctions";
 
-export default function TrendingAuctions() {
+export default function TrendingAuctions({navigation} : any) {
   return (
     <View>
       <Text
@@ -29,7 +29,7 @@ export default function TrendingAuctions() {
           <View style={{ marginHorizontal: 10 }}></View>
         )}
         renderItem={({ item }) => (
-          <TouchableOpacity style={{ width: 130, alignItems: "center" }}>
+          <TouchableOpacity onPress={() => navigation.navigate('Product Details')}  style={{ width: 130, alignItems: "center" }}>
             <Image
               source={{ uri: item.image }}
               style={{

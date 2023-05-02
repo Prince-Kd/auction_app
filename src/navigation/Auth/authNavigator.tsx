@@ -3,7 +3,7 @@ import Login from "../../features/auth/screens/login";
 import Signup from "../../features/auth/screens/signup";
 import ForgotPassword from "../../features/auth/screens/forgotPassword";
 import VerifyOtp from "../../features/auth/screens/verifyOtp";
-import ProductDetails from "../../product_details/productDetails";
+import ProductDetails from "../../features/products/product_details/productDetails";
 
 const Stack = createNativeStackNavigator();
 
