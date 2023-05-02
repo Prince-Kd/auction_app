@@ -114,6 +114,7 @@ export default function Signup({ navigation }) {
               display: "flex",
               flexDirection: "row",
               justifyContent: "center",
+              marginTop: 10,
             }}
           >
             <Text>Already have an account ?{` `}</Text>
