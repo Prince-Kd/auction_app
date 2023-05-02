@@ -1,14 +1,7 @@
 import { View, Text, FlatList, Image, TouchableOpacity } from "react-native";
 import { trending_auctions } from "../../database/trending_auctions";
-import { useRouter } from "expo-router";
 
 export default function TrendingAuctions() {
-  const router = useRouter();
-
-  //handle navigation
-  const handleNavigation = (item) => {
-    router.push("/product_details/productDetails");
-  };
   return (
     <View>
       <Text
@@ -36,10 +29,7 @@ export default function TrendingAuctions() {
           <View style={{ marginHorizontal: 10 }}></View>
         )}
         renderItem={({ item }) => (
-          <TouchableOpacity
-            style={{ width: 130, alignItems: "center" }}
-            onPress={() => handleNavigation(item)}
-          >
+          <TouchableOpacity style={{ width: 130, alignItems: "center" }}>
             <Image
               source={{ uri: item.image }}
               style={{
