@@ -12,6 +12,7 @@ import { TextInput } from "react-native-paper";
 import { trending_auctions } from "../../../../database/trending_auctions";
 import { category_icons } from "../../../../database/category_icons";
 import { upcoming_auctions } from "../../../../database/upcoming_auctions";
+import FloatingBottomTab from "../../../components/floatingBottomTab";
 
 export default function Home() {
   const screenWidth = Dimensions.get("window").width;
@@ -190,6 +191,7 @@ export default function Home() {
           keyExtractor={(item, index) => item._id}
         />
       </ScrollView>
+      <FloatingBottomTab />
     </View>
   );
 }
@@ -197,6 +199,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     display: "flex",
+    position: "relative",
     flex: 1,
     flexDirection: "column",
     backgroundColor: "#ffffff",
