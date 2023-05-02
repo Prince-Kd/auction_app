@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useBottomNavStore } from "../hooks/useBottomNavStore";

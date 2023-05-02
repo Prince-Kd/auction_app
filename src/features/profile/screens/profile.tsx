@@ -3,10 +3,10 @@ import AppBar from "../../../components/appBar";
 import { StatusBar } from "expo-status-bar";
 import FloatingBottomTab from "../../../components/floatingBottomTab";
 
-export default function Favorite() {
+export default function Profile() {
   return (
     <View style={styles.container}>
-      <AppBar title="Favorite" />
+      <AppBar title="Profile" />
       <FloatingBottomTab />
     </View>
   );

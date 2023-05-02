@@ -16,7 +16,6 @@ import FloatingBottomTab from "../../../components/floatingBottomTab";
 
 export default function Home() {
   const screenWidth = Dimensions.get("window").width;
-  const icons = category_icons.map((_dd) => _dd.icon);
   return (
     <View style={styles.container}>
       {/* salutation */}
@@ -70,7 +69,7 @@ export default function Home() {
           }}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={{ alignItems: "center", paddingRight: 40 }}
-          data={icons}
+          data={category_icons}
           horizontal={true}
           ItemSeparatorComponent={({ highlighted }) => (
             <View style={{ marginHorizontal: 10 }}></View>
@@ -86,10 +85,10 @@ export default function Home() {
                 alignItems: "center",
               }}
             >
-              {item}
+              {item.icon}
             </View>
           )}
-          keyExtractor={(item, index) => item.toString()}
+          keyExtractor={(item, index) => item._id}
         />
 
         {/* Upcoming Aunctions section */}
@@ -139,7 +138,7 @@ export default function Home() {
               </View>
             </View>
           )}
-          keyExtractor={(item, index) => item._id}
+          keyExtractor={(item) => item._id}
         />
 
         {/* Trending aution section */}
@@ -188,7 +187,7 @@ export default function Home() {
               </Text>
             </View>
           )}
-          keyExtractor={(item, index) => item._id}
+          keyExtractor={(item) => item._id}
         />
       </ScrollView>
       <FloatingBottomTab />
