@@ -28,7 +28,12 @@ export default function Account({ navigation }: any) {
           </View>
           <View style={styles.listTile}>
             <View style={{ flexDirection: "row", gap: 10 }}>
-              <Feather key="shopping-bag" name="shopping-bag" size={24} color="black" />
+              <Feather
+                key="shopping-bag"
+                name="shopping-bag"
+                size={24}
+                color="black"
+              />
               <Text style={{ fontSize: 18 }}>Orders</Text>
             </View>
             <Feather name="chevron-right" size={24} color="black" />
@@ -49,12 +54,16 @@ export default function Account({ navigation }: any) {
           </View>
           <View style={styles.listTile}>
             <View style={{ flexDirection: "row", gap: 10 }}>
-              <Feather key="credit-card" name="credit-card" size={24} color="black" />
+              <Feather
+                key="credit-card"
+                name="credit-card"
+                size={24}
+                color="black"
+              />
               <Text style={{ fontSize: 18 }}>Payment Info</Text>
             </View>
             <Feather name="chevron-right" size={24} color="black" />
           </View>
-          
         </View>
 
         <FloatingBottomTab />
