@@ -1,6 +1,5 @@
 import { View, Text } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-import { NavigationProp } from "@react-navigation/native";
 
 interface AppBarProps {
   title: string;
@@ -19,13 +18,17 @@ export default function AppBar({ title, goBack, navigation }: AppBarProps) {
     >
       <View style={{ flexDirection: "row", gap: 10 }}>
         {goBack ? (
-          <MaterialIcons onPress={() => navigation.goBack()} name="chevron-left" size={24} color="black" />
+          <MaterialIcons
+            onPress={() => navigation.goBack()}
+            name="chevron-left"
+            size={24}
+            color="black"
+          />
         ) : (
           <></>
         )}
         <Text style={{ fontSize: 20, fontWeight: "500" }}>{title}</Text>
       </View>
-      <MaterialIcons name="notifications-none" size={24} color="black" />
     </View>
   );
 }

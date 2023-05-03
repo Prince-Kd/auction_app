@@ -6,11 +6,18 @@ import Favorite from "../../features/favorite/screens/favorite";
 import Profile from "../../features/profile/screens/profile";
 import HomeStack from "./homeStack";
 import CreateAuction from "../../features/auction/screens/createAuction";
+import Notifications from "../../features/notifications/screens/notifications";
 
 const Stack = createNativeStackNavigator();
 
 export default function MainStackNavigator() {
   const activeIndex = useBottomNavStore((state) => state.activeIndex);
-  const routes = [<HomeStack />, <Favorite />, <CreateAuction />, <Favorite />, <Profile />];
+  const routes = [
+    <HomeStack />,
+    <Favorite />,
+    <CreateAuction />,
+    <Notifications />,
+    <Profile />,
+  ];
   return routes[activeIndex];
 }

@@ -22,10 +22,10 @@ export default function FloatingBottomTab() {
         onPress={() => {
           updateIndex(1);
         }}
-        color={activeIndex === 1 ? "white" : "gray"}
-        key="search"
-        name="search"
+        key="heart"
+        name="heart"
         size={24}
+        color={activeIndex === 1 ? "white" : "gray"}
       />
       <Pressable
         // style={{ height: 24, width: 24, flexDirection: "row", justifyContent: "center" }}
@@ -36,13 +36,13 @@ export default function FloatingBottomTab() {
         {/* <Bid /> */}
         <BidIcon color={activeIndex === 2 ? "white" : "gray"} />
       </Pressable>
- 
+
       <Feather
         onPress={() => {
           updateIndex(3);
         }}
-        key="heart"
-        name="heart"
+        key="bell"
+        name="bell"
         size={24}
         color={activeIndex === 3 ? "white" : "gray"}
       />
