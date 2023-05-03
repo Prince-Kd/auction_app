@@ -1,10 +1,11 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Pressable } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useBottomNavStore } from "../hooks/useBottomNavStore";
+import BidIcon from "./bidIcon";
 
 export default function FloatingBottomTab() {
-    const activeIndex = useBottomNavStore((state) => state.activeIndex);
-    const updateIndex = useBottomNavStore((state) => state.updateActive);
+  const activeIndex = useBottomNavStore((state) => state.activeIndex);
+  const updateIndex = useBottomNavStore((state) => state.updateActive);
 
   return (
     <View style={styles.container}>
@@ -26,15 +27,16 @@ export default function FloatingBottomTab() {
         name="search"
         size={24}
       />
-      <Feather
+      <Pressable
+        // style={{ height: 24, width: 24, flexDirection: "row", justifyContent: "center" }}
         onPress={() => {
           updateIndex(2);
         }}
-        key="auction"
-        name="heart"
-        size={24}
-        color={activeIndex === 2 ? "white" : "gray"}
-      />
+      >
+        {/* <Bid /> */}
+        <BidIcon color={activeIndex === 2 ? "white" : "gray"} />
+      </Pressable>
+ 
       <Feather
         onPress={() => {
           updateIndex(3);

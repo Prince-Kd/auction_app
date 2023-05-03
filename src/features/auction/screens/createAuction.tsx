@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import AppBar from "../../../components/appBar";
 import { TextInput } from "react-native-paper";
 import FloatingBottomTab from "../../../components/floatingBottomTab";
+import BidIcon from "../../../components/bidIcon";
 
 
 export default function CreateAuction() {
