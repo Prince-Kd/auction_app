@@ -6,6 +6,7 @@ import {
   FlatList,
   Dimensions,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import { TextInput } from "react-native-paper";
 import { category_icons } from "../../../../database/category_icons";
@@ -13,7 +14,7 @@ import { upcoming_auctions } from "../../../../database/upcoming_auctions";
 import FloatingBottomTab from "../../../components/floatingBottomTab";
 import TrendingAuctions from "../../../components/trendingAuctions";
 
-export default function Home({navigation} : any) {
+export default function Home({ navigation }: any) {
   const screenWidth = Dimensions.get("window").width;
 
   return (
@@ -75,7 +76,7 @@ export default function Home({navigation} : any) {
             <View style={{ marginHorizontal: 10 }}></View>
           )}
           renderItem={({ item }) => (
-            <View
+            <TouchableOpacity
               style={{
                 height: 60,
                 width: 60,
@@ -86,7 +87,7 @@ export default function Home({navigation} : any) {
               }}
             >
               {item.icon}
-            </View>
+            </TouchableOpacity>
           )}
           keyExtractor={(item, index) => item._id}
         />
