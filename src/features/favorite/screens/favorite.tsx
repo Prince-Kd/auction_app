@@ -18,7 +18,7 @@ export default function Favorite() {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 10,
+    paddingTop: 20,
     flex: 1,
   },
 });

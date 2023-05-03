@@ -9,7 +9,7 @@ import BidIcon from "../../../components/bidIcon";
 export default function CreateAuction() {
   return (
     <SafeAreaView style={{ flex: 1, position: "relative" }}>
-      <ScrollView style={{ paddingTop: 10, flex: 1 }}>
+      <ScrollView style={{ paddingTop: 20, flex: 1 }}>
         <AppBar title="Create Auction" />
         <View style={{ paddingHorizontal: 20, paddingTop: 30 }}>
           <Text style={{ fontSize: 16, fontWeight: "500" }}>

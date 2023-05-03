@@ -74,7 +74,7 @@ export default function Account({ navigation }: any) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 10,
+    paddingTop: 20,
     flex: 1,
   },
 

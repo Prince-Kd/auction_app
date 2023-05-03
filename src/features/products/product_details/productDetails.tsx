@@ -1,23 +1,25 @@
 import {
   View,
   Text,
-  SafeAreaView,
+  // SafeAreaView,
   TouchableOpacity,
   ScrollView,
   Image,
 } from "react-native";
 import { MaterialIcons, Feather, FontAwesome } from "@expo/vector-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 
 export default function ProductDetails({ navigation }: any) {
   return (
-    <>
-      <SafeAreaView>
+    
+      <SafeAreaView >
         <View
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
             paddingHorizontal: 20,
-            paddingTop: 10,
+            paddingTop: 20,
           }}
         >
           <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
@@ -255,6 +257,6 @@ export default function ProductDetails({ navigation }: any) {
           </View>
         </ScrollView>
       </SafeAreaView>
-    </>
+  
   );
 }
