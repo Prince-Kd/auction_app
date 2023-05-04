@@ -8,8 +8,12 @@ import {
 } from "react-native";
 import { MaterialIcons, Feather, FontAwesome } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useState } from "react";
+import Modal from "react-native-modal";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function ProductDetails({ navigation }: any) {
+  const [showModal, setShowModal] = useState(false);
   return (
     <SafeAreaView>
       <View
@@ -246,6 +250,7 @@ export default function ProductDetails({ navigation }: any) {
                 alignItems: "center",
                 justifyContent: "center",
               }}
+              onPress={() => setShowModal(true)}
             >
               <Text style={{ color: "white", fontWeight: "bold" }}>
                 Place Bid
@@ -254,6 +259,169 @@ export default function ProductDetails({ navigation }: any) {
           </View>
         </View>
       </ScrollView>
+      <Modal
+        isVisible={showModal}
+        onBackdropPress={() => setShowModal(false)}
+        swipeDirection="down"
+        style={{ justifyContent: "flex-end", margin: 0 }}
+      >
+        <View
+          style={{
+            backgroundColor: "white",
+            paddingTop: 16,
+            paddingHorizontal: 20,
+            paddingBottom: 5,
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+          }}
+        >
+          <View
+            style={{
+              height: 4,
+              borderRadius: 2,
+              backgroundColor: "#eeeeee",
+              width: 80,
+              marginBottom: 20,
+              alignSelf: "center",
+            }}
+          ></View>
+          <View
+            style={{
+              backgroundColor: "#eeeeee",
+              borderRadius: 20,
+              padding: 15,
+              flexDirection: "row",
+              justifyContent: "space-between",
+              gap: 10,
+              marginBottom: 15,
+            }}
+          >
+            <View
+              style={{
+                height: 60,
+                width: 60,
+                borderRadius: 15,
+                backgroundColor: "black",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            ></View>
+            <View style={{ alignItems: "flex-start" }}>
+              <Text style={{ fontSize: 12, color: "gray" }}>CURRENT BID</Text>
+              <Text style={{ fontSize: 16, fontWeight: "500" }}>14,500 $</Text>
+              <Text style={{ fontSize: 12 }}>Bidding Fee: 10%</Text>
+            </View>
+            <View
+              style={{
+                backgroundColor: "#e1e2e3",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 5,
+                borderRadius: 20,
+                alignSelf: "flex-start",
+                padding: 3,
+                paddingHorizontal: 10,
+              }}
+            >
+              <Ionicons name="time" size={15} color="black" />
+              <Text style={{ fontWeight: "500", fontSize: 13 }}>
+                3d 6h 48m 03s
+              </Text>
+            </View>
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              gap: 20,
+            }}
+          >
+            <View
+              style={{
+                borderRadius: 10,
+                paddingVertical: 10,
+                backgroundColor: "black",
+                flex: 1,
+              }}
+            >
+              <Text
+                style={{
+                  color: "white",
+                  textAlign: "center",
+                  fontWeight: "500",
+                  fontSize: 12,
+                }}
+              >
+                14,600 $
+              </Text>
+            </View>
+            <View
+              style={{
+                borderRadius: 10,
+                paddingVertical: 8,
+                backgroundColor: "black",
+                flex: 1,
+              }}
+            >
+              <Text
+                style={{
+                  color: "white",
+                  textAlign: "center",
+                  fontWeight: "500",
+                  fontSize: 12,
+                }}
+              >
+                14,600 $
+              </Text>
+            </View>
+            <View
+              style={{
+                borderRadius: 10,
+                paddingVertical: 8,
+                backgroundColor: "black",
+                flex: 1,
+              }}
+            >
+              <Text
+                style={{
+                  color: "white",
+                  textAlign: "center",
+                  fontWeight: "500",
+                  fontSize: 12,
+                }}
+              >
+                14,600 $
+              </Text>
+            </View>
+          </View>
+
+          <View
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <TouchableOpacity
+              style={{
+                marginTop: 20,
+                backgroundColor: "black",
+                width: 150,
+                height: 50,
+                borderRadius: 25,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              onPress={() => setShowModal(true)}
+            >
+              <Text style={{ color: "white", fontWeight: "bold" }}>
+                Place Bid
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 }
