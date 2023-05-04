@@ -40,7 +40,7 @@ export default function Favorite() {
           <View
             style={{
               marginTop: 10,
-              paddingHorizontal: 30,
+              paddingHorizontal: 20,
               flexDirection: "row",
               flexWrap: "wrap",
               columnGap: 60,
@@ -50,8 +50,9 @@ export default function Favorite() {
             {trending_auctions.map((item) => (
               <TouchableOpacity
                 style={{
-                  width: (screenWidth - 120) / 2,
+                  width: (screenWidth - 100) / 2,
                   position: "relative",
+                  borderRadius: 20,
                 }}
                 key={item._id}
               >
@@ -59,7 +60,7 @@ export default function Favorite() {
                   source={{ uri: item.image }}
                   style={{
                     height: 150,
-                    width: 150,
+                    width: (screenWidth - 100) / 2,
                     borderRadius: 20,
                     backgroundColor: "black",
                   }}

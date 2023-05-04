@@ -76,18 +76,21 @@ export default function Home({ navigation }: any) {
             <View style={{ marginHorizontal: 10 }}></View>
           )}
           renderItem={({ item }) => (
-            <TouchableOpacity
-              style={{
-                height: 60,
-                width: 60,
-                borderRadius: 15,
-                backgroundColor: "black",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              {item.icon}
-            </TouchableOpacity>
+            <View style={{ alignItems: "center" }}>
+              <TouchableOpacity
+                style={{
+                  height: 60,
+                  width: 60,
+                  borderRadius: 15,
+                  backgroundColor: "black",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                {item.icon}
+              </TouchableOpacity>
+              <Text style={{ fontSize: 12, color: "gray" }}>{item.name}</Text>
+            </View>
           )}
           keyExtractor={(item, index) => item._id}
         />
