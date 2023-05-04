@@ -95,7 +95,7 @@ export default function Home({ navigation }: any) {
           keyExtractor={(item, index) => item._id}
         />
 
-        {/* Upcoming Aunctions section */}
+        {/* Upcoming Aunctions sections */}
         <Text
           style={{
             paddingLeft: 20,
