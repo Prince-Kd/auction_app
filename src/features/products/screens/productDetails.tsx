@@ -11,6 +11,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 import Modal from "react-native-modal";
 import { Ionicons } from "@expo/vector-icons";
+import { TextInput } from "react-native-paper";
 
 export default function ProductDetails({ navigation }: any) {
   const [showModal, setShowModal] = useState(false);
@@ -22,6 +23,7 @@ export default function ProductDetails({ navigation }: any) {
           justifyContent: "space-between",
           paddingHorizontal: 20,
           paddingTop: 20,
+          paddingBottom: 95,
         }}
       >
         <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
@@ -393,6 +395,11 @@ export default function ProductDetails({ navigation }: any) {
                 14,600 $
               </Text>
             </View>
+          </View>
+          <View style={{ flexDirection: "row", height: 50, marginTop: 20 }}>
+            <View style={{ flex: 1 }}></View>
+            <TextInput style={{ flex: 1, backgroundColor: "" }} />
+            <View style={{ flex: 1 }}></View>
           </View>
 
           <View

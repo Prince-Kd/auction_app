@@ -27,6 +27,7 @@ export default function CreateAuction() {
             right={<TextInput.Icon icon={"magnify"} />}
           />
         </View>
+        <View style={{ height: 95 }}></View>
       </ScrollView>
       <FloatingBottomTab />
     </SafeAreaView>

@@ -17,11 +17,11 @@ import { FontAwesome } from "@expo/vector-icons";
 export default function Favorite() {
   const screenWidth = Dimensions.get("window").width;
   return (
-    <SafeAreaView style={{ position: "relative", flex: 1 }}>
+    <SafeAreaView style={{ position: "relative", flex: 1, backgroundColor: "transparent" }}>
       <View style={styles.container}>
         <AppBar title="Favorite" />
 
-        <ScrollView>
+        <ScrollView style={{ paddingBottom: 95 }}>
           {/* search bar */}
           <TextInput
             placeholder="Looking for something?"
@@ -111,10 +111,10 @@ export default function Favorite() {
               </TouchableOpacity>
             ))}
           </View>
+          <View style={{height: 95}}></View>
         </ScrollView>
-
-        <FloatingBottomTab />
       </View>
+      <FloatingBottomTab />
     </SafeAreaView>
   );
 }
@@ -123,5 +123,6 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 20,
     flex: 1,
+    // paddingBottom: 95,
   },
 });

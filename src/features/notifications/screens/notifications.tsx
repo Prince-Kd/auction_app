@@ -57,10 +57,10 @@ export default function Notifications() {
               </View>
             </View>
           ))}
+          <View style={{ height: 95 }}></View>
         </ScrollView>
-
-        <FloatingBottomTab />
       </View>
+      <FloatingBottomTab />
     </SafeAreaView>
   );
 }

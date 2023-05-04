@@ -45,7 +45,7 @@ export default function Home({ navigation }: any) {
         </View>
       </View>
 
-      <ScrollView>
+      <ScrollView style={{ paddingBottom: 95 }}>
         {/* search bar */}
         <TextInput
           placeholder="Looking for something?"
@@ -147,6 +147,7 @@ export default function Home({ navigation }: any) {
 
         {/* Trending aution section */}
         <TrendingAuctions navigation={navigation} />
+        <View style={{ height: 95 }}></View>
       </ScrollView>
       <FloatingBottomTab />
     </View>
@@ -161,5 +162,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "#ffffff",
     paddingTop: 50,
+    // paddingBottom: 95,
   },
 });
