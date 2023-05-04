@@ -398,7 +398,7 @@ export default function ProductDetails({ navigation }: any) {
           </View>
           <View style={{ flexDirection: "row", height: 50, marginTop: 20 }}>
             <View style={{ flex: 1 }}></View>
-            <TextInput style={{ flex: 1, backgroundColor: "" }} />
+            <TextInput keyboardType="numeric" style={{ flex: 1, backgroundColor: "" }} />
             <View style={{ flex: 1 }}></View>
           </View>
 
