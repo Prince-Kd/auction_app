@@ -23,7 +23,6 @@ export default function ProductDetails({ navigation }: any) {
           justifyContent: "space-between",
           paddingHorizontal: 20,
           paddingTop: 20,
-          paddingBottom: 95,
         }}
       >
         <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
@@ -260,6 +259,7 @@ export default function ProductDetails({ navigation }: any) {
             </TouchableOpacity>
           </View>
         </View>
+        <View style={{ height: 95 }}></View>
       </ScrollView>
       <Modal
         isVisible={showModal}
