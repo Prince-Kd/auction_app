@@ -23,6 +23,7 @@ export default function Notifications() {
                 borderBottomWidth: 0.2,
                 borderBottomColor: "#eeeee",
                 columnGap: 10,
+                paddingRight: 35,
               }}
             >
               {/* icon */}
@@ -45,7 +46,7 @@ export default function Notifications() {
               </View>
 
               {/* text */}
-              <View style={{ paddingRight: 20 }}>
+              <View>
                 <Text style={{ fontWeight: "bold", fontSize: 16 }}>
                   {_dd.title}
                 </Text>
