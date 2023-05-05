@@ -1,0 +1,1 @@
+export const API_URL = "https://weak-jade-yak-kit.cyclic.app";

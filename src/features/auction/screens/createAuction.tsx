@@ -5,10 +5,11 @@ import { TextInput } from "react-native-paper";
 import FloatingBottomTab from "../../../components/floatingBottomTab";
 import BidIcon from "../../../components/bidIcon";
 import useAuctionStore from "../store/auctionStore";
-
+import { useState } from "react";
 
 export default function CreateAuction() {
-  const { category, searchCategory } = useAuctionStore(state => state);
+  const [category, setCategory] = useState("");
+  const { categories, searchCategory } = useAuctionStore((state) => state);
   return (
     <SafeAreaView style={{ flex: 1, position: "relative" }}>
       <ScrollView style={{ paddingTop: 20, flex: 1 }}>
@@ -17,21 +18,38 @@ export default function CreateAuction() {
           <Text style={{ fontSize: 16, fontWeight: "500" }}>
             Choose a category
           </Text>
-          <TextInput
-            placeholder="Search a category"
-            value={category}
-            mode="outlined"
-            outlineStyle={{ borderRadius: 25, borderColor: "transparent" }}
+          <View
             style={{
+              position: "absolute",
+              top: 115,
+              left: 20,
+              display: `${category && category.length >= 3 ? "flex" : "none"}`,
+              height: 100,
+              width: "100%",
+              zIndex: 50,
+              borderRadius: 20,
               backgroundColor: "#eeeeee",
-              marginBottom: 20,
-              height: 50,
             }}
-            onChangeText={() => {
-              searchCategory(category!);
-            }}
-            right={<TextInput.Icon icon={"magnify"} />}
-          />
+          ></View>
+          <View style={{ position: "relative" }}>
+            <TextInput
+              placeholder="Search a category"
+              value={category}
+              mode="outlined"
+              outlineStyle={{ borderRadius: 25, borderColor: "transparent" }}
+              style={{
+                backgroundColor: "#eeeeee",
+                marginBottom: 20,
+                height: 50,
+              }}
+              onChangeText={(value) => {
+                setCategory(value);
+                searchCategory(value);
+              }}
+              right={<TextInput.Icon icon={"magnify"} />}
+            />
+          </View>
+
           <TextInput
             label="Product name *"
             mode="outlined"
@@ -62,6 +80,4 @@ export default function CreateAuction() {
   );
 }
 
-const styles = StyleSheet.create({
-
-});
+const styles = StyleSheet.create({});

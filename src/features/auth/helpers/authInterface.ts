@@ -1,14 +1,11 @@
 interface loginInterface{
-    email: string;
+    uid: string;
     password: string;
 }
 
 interface signupInterface{
-    firstName: string;
-    lastName: string;
+    username: string;
     email: string;
-    phone: string;
-    gender: string;
     password: string;
 }
 

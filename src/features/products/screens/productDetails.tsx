@@ -414,36 +414,39 @@ export default function ProductDetails({ navigation }: any) {
           </View>
           <View style={{ flexDirection: "row", height: 50, marginTop: 20 }}>
             <View style={{ flex: 1 }}></View>
-            <TextInput keyboardType="numeric" style={{ flex: 1, backgroundColor: "" }} />
+            <TextInput
+              keyboardType="numeric"
+              style={{ flex: 1, backgroundColor: "" }}
+            />
             <View style={{ flex: 1 }}></View>
           </View>
 
-            <View
+          <View
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <TouchableOpacity
               style={{
+                marginTop: 20,
+                backgroundColor: "black",
+                width: 150,
+                height: 50,
+                borderRadius: 25,
                 display: "flex",
-                justifyContent: "center",
                 alignItems: "center",
+                justifyContent: "center",
               }}
+              onPress={() => setShowModal(true)}
             >
-              <TouchableOpacity
-                style={{
-                  marginTop: 20,
-                  backgroundColor: "black",
-                  width: 150,
-                  height: 50,
-                  borderRadius: 25,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-                onPress={() => setShowModal(true)}
-              >
-                <Text style={{ color: "white", fontWeight: "bold" }}>
-                  Place Bid
-                </Text>
-              </TouchableOpacity>
-            </View>
+              <Text style={{ color: "white", fontWeight: "bold" }}>
+                Place Bid
+              </Text>
+            </TouchableOpacity>
           </View>
+          {/* </View> */}
         </Modal>
       </KeyboardAvoidingView>
     </SafeAreaView>

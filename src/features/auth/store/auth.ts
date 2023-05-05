@@ -1,20 +1,24 @@
-import { create } from 'zustand';
-import { loginInterface, signupInterface } from '../helpers/authInterface';
+import { create } from "zustand";
+import { loginInterface, signupInterface } from "../helpers/authInterface";
+import { getToken, storeToken } from "../../../storage/localStorage";
+import { login } from "../api/login";
 
-interface AuthStore{
+interface AuthStore {
   token: string | null;
-    login: (args: loginInterface) => Promise<any>;
-    signup: (args: signupInterface) => Promise<any>;
-};
+  getToken: () => Promise<string | null>;
+  login: (args: loginInterface) => Promise<any>;
+  signup: (args: signupInterface) => Promise<any>;
+}
 
-const useAuthStore = create<AuthStore>()(set => ({
+const useAuthStore = create<AuthStore>()((set) => ({
   token: null,
-    login: async ({email, password }: loginInterface) => {
-      
-    },
-    signup: async (args: signupInterface) => {
-        
-    }
-}))
+  getToken: getToken,
+  login: async ({ uid, password }: loginInterface) => {
+    const token = await login({ uid, password });
+    set({ token: token });
+    storeToken(token);
+  },
+  signup: async (args: signupInterface) => {},
+}));
 
-export {useAuthStore}
+export { useAuthStore };

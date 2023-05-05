@@ -11,9 +11,14 @@ import {
   ScrollView,
 } from "react-native";
 import { TextInput } from "react-native-paper";
+import { Formik } from "formik";
+import { signupValidationSchema } from "../helpers/validationSchema";
+import { useAuthStore } from "../store/auth";
+import { signupInterface } from "../helpers/authInterface";
 
-export default function Signup({ navigation }) {
+export default function Signup({ navigation }: any) {
   const screenHeight = Dimensions.get("window").height;
+  const { signup } = useAuthStore((state) => state);
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -33,80 +38,93 @@ export default function Signup({ navigation }) {
             Sign up
           </Text>
           <View style={{ flex: 1, justifyContent: "center" }}>
-            <TextInput
-              label="Username"
-              style={{ backgroundColor: "", marginBottom: 10, height: 50 }}
-              left={<TextInput.Icon icon={"account-outline"} size={20} />}
-            />
-            <TextInput
-              label="Email"
-              style={{ backgroundColor: "", marginBottom: 10, height: 50 }}
-              left={<TextInput.Icon icon={"email-outline"} size={20} />}
-            />
-            <TextInput
-              label="Password"
-              secureTextEntry
-              style={{ backgroundColor: "", marginBottom: 10, height: 50 }}
-              left={<TextInput.Icon icon={"lock-outline"} size={20} />}
-            />
-            <TextInput
-              label="Confirm Password"
-              secureTextEntry
-              style={{ backgroundColor: "", height: 50 }}
-              left={<TextInput.Icon icon={"lock-outline"} size={20} />}
-            />
+            <Formik
+              initialValues={{ username: "", email: "", password: "" }}
+              onSubmit={(values: signupInterface) => signup(values)}
+              validationSchema={signupValidationSchema}
+            >
+              {({
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                values,
+                errors,
+                touched,
+              }) => (
+                <>
+                  <View style={{ marginBottom: 10 }}>
+                    <TextInput
+                      label="Username"
+                      style={{
+                        backgroundColor: "",
+                        height: 50,
+                      }}
+                      left={
+                        <TextInput.Icon icon={"account-outline"} size={20} />
+                      }
+                    />
+                    {errors.username && touched.username && (
+                      <Text style={{ color: "red" }}>{errors.username}</Text>
+                    )}
+                  </View>
+                  <View style={{ marginBottom: 10 }}>
+                    <TextInput
+                      label="Email"
+                      style={{
+                        backgroundColor: "",
+                        height: 50,
+                      }}
+                      left={<TextInput.Icon icon={"email-outline"} size={20} />}
+                    />
+                    {errors.email && touched.email && (
+                      <Text style={{ color: "red" }}>{errors.email}</Text>
+                    )}
+                  </View>
+                  <View style={{ marginBottom: 10 }}>
+                    <TextInput
+                      label="Password"
+                      secureTextEntry
+                      style={{
+                        backgroundColor: "",
+                        height: 50,
+                      }}
+                      left={<TextInput.Icon icon={"lock-outline"} size={20} />}
+                    />
+                    {errors.password && touched.password && (
+                      <Text style={{ color: "red" }}>{errors.password}</Text>
+                    )}
+                  </View>
 
-            <TouchableOpacity
-              style={{
-                backgroundColor: "black",
-                height: 50,
-                justifyContent: "center",
-                borderRadius: 25,
-                marginVertical: 30,
-              }}
-            >
-              <Text
-                style={{ color: "white", textAlign: "center", fontSize: 15 }}
-              >
-                Sign up
-              </Text>
-            </TouchableOpacity>
-            <Text
-              style={{ color: "gray", textAlign: "center", marginBottom: 20 }}
-            >
-              or sign up with
-            </Text>
-            <View style={{ flexDirection: "row", justifyContent: "center" }}>
-              <Pressable
-                style={{
-                  height: 40,
-                  width: 40,
-                  borderRadius: 20,
-                  borderColor: "gray",
-                  borderWidth: 1.5,
-                  marginRight: 20,
-                }}
-              ></Pressable>
-              <Pressable
-                style={{
-                  height: 40,
-                  width: 40,
-                  borderRadius: 20,
-                  borderColor: "gray",
-                  borderWidth: 1.5,
-                  marginRight: 20,
-                }}
-              ></Pressable>
-              <Pressable
-                style={{
-                  height: 40,
-                  width: 40,
-                  borderRadius: 20,
-                  borderColor: "gray",
-                  borderWidth: 1.5,
-                }}
-              ></Pressable>
-            </View>
+                  {/* <TextInput
+                    label="Confirm Password"
+                    secureTextEntry
+                    style={{ backgroundColor: "", height: 50 }}
+                    left={<TextInput.Icon icon={"lock-outline"} size={20} />}
+                  /> */}
+
+                  <TouchableOpacity
+                  
+                    style={{
+                      backgroundColor: "black",
+                      height: 50,
+                      justifyContent: "center",
+                      borderRadius: 25,
+                      marginVertical: 30,
+                    }}
+                  >
+                    <Text
+                      style={{
+                        color: "white",
+                        textAlign: "center",
+                        fontSize: 15,
+                      }}
+                    >
+                      Sign up
+                    </Text>
+                  </TouchableOpacity>
+                </>
+              )}
+            </Formik>
           </View>
 
           <View
