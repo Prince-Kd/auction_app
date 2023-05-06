@@ -9,7 +9,7 @@ const signupValidationSchema = Yup.object().shape({
 });
 
 const loginValidationSchema = Yup.object().shape({
-  uid: Yup.string().required("Username is required"),
+  uid: Yup.string().required("Username/Email is required"),
   password: Yup.string()
     .required("Password is required"),
 });

@@ -9,15 +9,18 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  ActivityIndicator,
 } from "react-native";
 import { TextInput } from "react-native-paper";
 import { Formik } from "formik";
 import { signupValidationSchema } from "../helpers/validationSchema";
 import { useAuthStore } from "../store/auth";
 import { signupInterface } from "../helpers/authInterface";
+import { useState } from "react";
 
 export default function Signup({ navigation }: any) {
   const screenHeight = Dimensions.get("window").height;
+  const [showPassword, setShowPassword] = useState(false);
   const { signup } = useAuthStore((state) => state);
   return (
     <KeyboardAvoidingView
@@ -28,7 +31,7 @@ export default function Signup({ navigation }: any) {
     >
       <ScrollView
         contentContainerStyle={styles.scrollContainer}
-        // keyboardShouldPersistTaps="handled"
+        keyboardShouldPersistTaps="handled"
       >
         {/* <View style={styles.container}> */}
         <View style={styles.loginView}>
@@ -40,7 +43,12 @@ export default function Signup({ navigation }: any) {
           <View style={{ flex: 1, justifyContent: "center" }}>
             <Formik
               initialValues={{ username: "", email: "", password: "" }}
-              onSubmit={(values: signupInterface) => signup(values)}
+              onSubmit={async (values: signupInterface, actions) => {
+                console.log(values);
+                actions.setSubmitting(true);
+                await signup(values);
+                actions.setSubmitting(false);
+              }}
               validationSchema={signupValidationSchema}
             >
               {({
@@ -50,6 +58,7 @@ export default function Signup({ navigation }: any) {
                 values,
                 errors,
                 touched,
+                isSubmitting,
               }) => (
                 <>
                   <View style={{ marginBottom: 10 }}>
@@ -59,6 +68,9 @@ export default function Signup({ navigation }: any) {
                         backgroundColor: "",
                         height: 50,
                       }}
+                      value={values.username}
+                      onChangeText={handleChange("username")}
+                      onBlur={handleBlur("username")}
                       left={
                         <TextInput.Icon icon={"account-outline"} size={20} />
                       }
@@ -74,6 +86,9 @@ export default function Signup({ navigation }: any) {
                         backgroundColor: "",
                         height: 50,
                       }}
+                      value={values.email}
+                      onChangeText={handleChange("email")}
+                      onBlur={handleBlur("email")}
                       left={<TextInput.Icon icon={"email-outline"} size={20} />}
                     />
                     {errors.email && touched.email && (
@@ -83,12 +98,24 @@ export default function Signup({ navigation }: any) {
                   <View style={{ marginBottom: 10 }}>
                     <TextInput
                       label="Password"
-                      secureTextEntry
+                      secureTextEntry={!showPassword}
                       style={{
                         backgroundColor: "",
                         height: 50,
                       }}
+                      value={values.password}
+                      onChangeText={handleChange("password")}
+                      onBlur={handleBlur("password")}
                       left={<TextInput.Icon icon={"lock-outline"} size={20} />}
+                      right={
+                        <TextInput.Icon
+                          onPress={() => setShowPassword(!showPassword)}
+                          icon={
+                            showPassword ? "eye-off-outline" : "eye-outline"
+                          }
+                          size={20}
+                        />
+                      }
                     />
                     {errors.password && touched.password && (
                       <Text style={{ color: "red" }}>{errors.password}</Text>
@@ -103,24 +130,28 @@ export default function Signup({ navigation }: any) {
                   /> */}
 
                   <TouchableOpacity
-                  
+                    onPress={()  => handleSubmit()}
                     style={{
                       backgroundColor: "black",
-                      height: 50,
+                      height: 60,
                       justifyContent: "center",
-                      borderRadius: 25,
+                      borderRadius: 30,
                       marginVertical: 30,
                     }}
                   >
-                    <Text
-                      style={{
-                        color: "white",
-                        textAlign: "center",
-                        fontSize: 15,
-                      }}
-                    >
-                      Sign up
-                    </Text>
+                    {isSubmitting ? (
+                      <ActivityIndicator size={"large"} color={"white"} />
+                    ) : (
+                      <Text
+                        style={{
+                          color: "white",
+                          textAlign: "center",
+                          fontSize: 15,
+                        }}
+                      >
+                        Signup
+                      </Text>
+                    )}
                   </TouchableOpacity>
                 </>
               )}
@@ -166,6 +197,7 @@ const styles = StyleSheet.create({
   loginView: {
     backgroundColor: "white",
     borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
     position: "absolute",
     bottom: 0,
     left: 0,

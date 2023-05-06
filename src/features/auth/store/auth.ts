@@ -17,6 +17,7 @@ const useAuthStore = create<AuthStore>()((set) => ({
     const token = await login({ uid, password });
     set({ token: token });
     storeToken(token);
+    
   },
   signup: async (args: signupInterface) => {},
 }));

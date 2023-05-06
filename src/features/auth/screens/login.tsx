@@ -10,16 +10,20 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  ActivityIndicator
 } from "react-native";
 import { TextInput } from "react-native-paper";
 import { Formik } from "formik";
 import { loginInterface } from "../helpers/authInterface";
 import { useAuthStore } from "../store/auth";
 import { loginValidationSchema } from "../helpers/validationSchema";
+import { useState } from "react";
 
-export default function Login({ navigation } : any ) {
+export default function Login({ navigation }: any) {
   const screenHeight = Dimensions.get("window").height;
-  const { login } = useAuthStore(state => state);
+  const { login } = useAuthStore((state) => state);
+    const [showPassword, setShowPassword] = useState(false);
+
 
   return (
     <KeyboardAvoidingView
@@ -30,7 +34,7 @@ export default function Login({ navigation } : any ) {
     >
       <ScrollView
         contentContainerStyle={styles.scrollContainer}
-        // keyboardShouldPersistTaps="handled"
+        keyboardShouldPersistTaps="handled"
       >
         {/* <View > */}
         <View style={styles.loginView}>
@@ -43,11 +47,11 @@ export default function Login({ navigation } : any ) {
             <Formik
               initialValues={{ uid: "", password: "" }}
               onSubmit={async (values: loginInterface, actions) => {
-                actions.setSubmitting(true);
-                await login(values)
-                actions.setSubmitting(false);
-              }
-              }
+                console.log(values);
+                // actions.setSubmitting(true);
+                // await login(values);
+                // actions.setSubmitting(false);
+              }}
               validationSchema={loginValidationSchema}
             >
               {({
@@ -57,28 +61,52 @@ export default function Login({ navigation } : any ) {
                 values,
                 errors,
                 touched,
-                isSubmitting
+                isSubmitting,
               }) => (
                 <>
-                  <TextInput
-                    label="Email/Username"
-                    style={{
-                      backgroundColor: "",
-                      marginBottom: 10,
-                      height: 50,
-                    }}
-                    left={<TextInput.Icon icon={"email-outline"} size={20} />}
-                  />
-                  <TextInput
-                    label="Password"
-                    secureTextEntry
-                    style={{
-                      backgroundColor: "",
-                      marginBottom: 10,
-                      height: 50,
-                    }}
-                    left={<TextInput.Icon icon={"lock-outline"} size={20} />}
-                  />
+                  <View style={{ marginBottom: 10 }}>
+                    <TextInput
+                      label="Email/Username"
+                      style={{
+                        backgroundColor: "",
+                        height: 50,
+                      }}
+                      onChangeText={handleChange("uid")}
+                      onBlur={handleBlur("uid")}
+                      value={values.uid}
+                      left={<TextInput.Icon icon={"email-outline"} size={20} />}
+                    />
+                    {errors.uid && touched.uid && (
+                      <Text style={{ color: "red" }}>{errors.uid}</Text>
+                    )}
+                  </View>
+                  <View style={{ marginBottom: 10 }}>
+                    <TextInput
+                      label="Password"
+                      secureTextEntry={!showPassword}
+                      value={values.password}
+                      style={{
+                        backgroundColor: "",
+                        height: 50,
+                      }}
+                      onChangeText={handleChange("password")}
+                      onBlur={handleBlur("password")}
+                      left={<TextInput.Icon icon={"lock-outline"} size={20} />}
+                      right={
+                        <TextInput.Icon
+                          onPress={() => setShowPassword(!showPassword)}
+                          icon={
+                            showPassword ? "eye-off-outline" : "eye-outline"
+                          }
+                          size={20}
+                        />
+                      }
+                    />
+                    {errors.password && touched.password && (
+                      <Text style={{ color: "red" }}>{errors.password}</Text>
+                    )}
+                  </View>
+
                   <Pressable>
                     <Text
                       style={{
@@ -91,24 +119,29 @@ export default function Login({ navigation } : any ) {
                     </Text>
                   </Pressable>
                   <TouchableOpacity
-                    onPress={() => handleSubmit}
+                    onPress={() => handleSubmit()}
+                    disabled={isSubmitting}
                     style={{
                       backgroundColor: "black",
-                      height: 50,
+                      height: 60,
                       justifyContent: "center",
-                      borderRadius: 25,
+                      borderRadius: 30,
                       marginVertical: 40,
                     }}
                   >
-                    <Text
-                      style={{
-                        color: "white",
-                        textAlign: "center",
-                        fontSize: 15,
-                      }}
-                    >
-                      {isSubmitting ? "Loading" : "Login"}
-                    </Text>
+                    {isSubmitting ? (
+                      <ActivityIndicator size={"large"} color={"white"} />
+                    ) : (
+                      <Text
+                        style={{
+                          color: "white",
+                          textAlign: "center",
+                          fontSize: 15,
+                        }}
+                      >
+                        Login
+                      </Text>
+                    )}
                   </TouchableOpacity>
                   {/* <Text
               style={{ color: "gray", textAlign: "center", marginBottom: 20 }}
@@ -188,6 +221,7 @@ const styles = StyleSheet.create({
   loginView: {
     backgroundColor: "white",
     borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
     position: "absolute",
     bottom: 0,
     left: 0,

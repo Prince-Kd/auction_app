@@ -1,6 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { loginInterface } from "../helpers/authInterface";
 import { API_URL } from "../../../api/api_url";
+import { storeUser } from "../../../storage/localStorage";
 
 export async function login(args: loginInterface): Promise<string> {
   try {
@@ -8,7 +9,10 @@ export async function login(args: loginInterface): Promise<string> {
       headers: { "Content-Type": "application/json" },
     });
 
+    console.log("response: ", response);
+
     const data = await response.data;
+    storeUser(data.paylaod)
     return data.token;
   } catch (error) {
     console.error(error);
