@@ -14,11 +14,11 @@ import { category_icons } from "../../../../database/category_icons";
 import { upcoming_auctions } from "../../../../database/upcoming_auctions";
 import FloatingBottomTab from "../../../components/floatingBottomTab";
 import TrendingAuctions from "../../../components/trendingAuctions";
-import { useHomeStore } from "../store/homeStore";
+import { useAuthStore } from "../../auth/store/auth";
 
 export default function Home({ navigation }: any) {
   const screenWidth = Dimensions.get("window").width;
-  const { user } = useHomeStore(state => state);
+  const { user } = useAuthStore(state => state);
 
   return (
     <KeyboardAvoidingView

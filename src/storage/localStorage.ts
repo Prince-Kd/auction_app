@@ -36,4 +36,13 @@ const getUser = async () => {
   }
 };
 
-export { storeToken, getToken, storeUser, getUser, deleteToken };
+const clearUser = async () => {
+  try {
+    await AsyncStorage.removeItem("user");
+  } catch (e) {
+    // error reading value
+    console.log("Error clearing user");
+  }
+}
+
+export { storeToken, getToken, storeUser, getUser, deleteToken, clearUser };

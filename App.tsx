@@ -6,14 +6,13 @@ import AuthStackNavigator from "./src/navigation/Auth/authNavigator";
 import MainStackNavigator from "./src/navigation/Main/mainNavigator";
 import * as SplashScreen from "expo-splash-screen";
 import { View } from "react-native";
-import { useHomeStore } from "./src/features/home/store/homeStore";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
   const { token, getToken } = useAuthStore((state) => state);
-  const {fetchUser } = useHomeStore(state => state);
+  const {fetchUser } = useAuthStore(state => state);
 
   useEffect(() => {
     async function prepare() {

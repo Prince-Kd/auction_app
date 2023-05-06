@@ -7,9 +7,12 @@ import FloatingBottomTab from "../../../components/floatingBottomTab";
 import { Feather } from "@expo/vector-icons";
 import { Divider } from "react-native-paper";
 import { useAuthStore } from "../../auth/store/auth";
+import { useBottomNavStore } from "../../../hooks/useBottomNavStore";
 
 export default function Account({ navigation }: any) {
   const { logout } = useAuthStore((state) => state);
+  const { updateActive } = useBottomNavStore(state => state);
+
   return (
     <SafeAreaView style={{ position: "relative", flex: 1 }}>
       <ScrollView>
@@ -69,7 +72,7 @@ export default function Account({ navigation }: any) {
               <Feather name="chevron-right" size={24} color="black" />
             </View>
             <Divider />
-            <TouchableOpacity style={styles.listTile} onPress={() => logout()}>
+            <TouchableOpacity style={styles.listTile} onPress={() => logout(updateActive)}>
               <View style={{ flexDirection: "row", gap: 10 }}>
                 <Feather key="logout" name="log-out" size={24} color="red" />
                 <Text style={{ fontSize: 18, color: "red" }}>logout</Text>
