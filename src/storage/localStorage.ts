@@ -6,26 +6,29 @@ const storeToken = async (value: string) => {
   await SecureStore.setItemAsync("token", value);
 };
 
+const deleteToken = async () => {
+  await SecureStore.deleteItemAsync("token");
+};
+
 const getToken = async () => {
   let result: string | null = await SecureStore.getItemAsync("token");
   console.log("Token: ", result);
   return result;
 };
 
-
-
-const storeUser = async (data: userInterface) => {
+const storeUser = async (data: any) => {
   try {
     await AsyncStorage.setItem("user", JSON.stringify(data));
   } catch (e) {
     // saving error
-    console.log("Error satoring user")
+    console.log("Error storing user: ", e);
   }
 };
 
 const getUser = async () => {
   try {
     const jsonValue = await AsyncStorage.getItem("user");
+    console.log(JSON.parse(jsonValue ?? ""));
     return jsonValue != null ? JSON.parse(jsonValue) : null;
   } catch (e) {
     // error reading value
@@ -33,4 +36,4 @@ const getUser = async () => {
   }
 };
 
-export { storeToken, getToken, storeUser, getUser };
+export { storeToken, getToken, storeUser, getUser, deleteToken };

@@ -14,4 +14,8 @@ const loginValidationSchema = Yup.object().shape({
     .required("Password is required"),
 });
 
-export { signupValidationSchema, loginValidationSchema };
+const otpValidationSchema = Yup.object().shape({
+  otp: Yup.string().min(6, "OTP must be 6 digits").required("OTP is required")
+})
+
+export { signupValidationSchema, loginValidationSchema, otpValidationSchema };

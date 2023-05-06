@@ -14,9 +14,11 @@ import { category_icons } from "../../../../database/category_icons";
 import { upcoming_auctions } from "../../../../database/upcoming_auctions";
 import FloatingBottomTab from "../../../components/floatingBottomTab";
 import TrendingAuctions from "../../../components/trendingAuctions";
+import { useHomeStore } from "../store/homeStore";
 
 export default function Home({ navigation }: any) {
   const screenWidth = Dimensions.get("window").width;
+  const { user } = useHomeStore(state => state);
 
   return (
     <KeyboardAvoidingView
@@ -37,7 +39,7 @@ export default function Home({ navigation }: any) {
           <View>
             <Text style={{ fontSize: 15, fontWeight: "500" }}>Hello,</Text>
             <Text style={{ fontSize: 20, fontWeight: "600" }}>
-              Mawuli Prince 👋
+              {user?.username} 👋
             </Text>
           </View>
           <View>

@@ -46,7 +46,7 @@ export default function Signup({ navigation }: any) {
               onSubmit={async (values: signupInterface, actions) => {
                 console.log(values);
                 actions.setSubmitting(true);
-                await signup(values);
+                await signup(values, navigation);
                 actions.setSubmitting(false);
               }}
               validationSchema={signupValidationSchema}

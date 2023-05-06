@@ -6,18 +6,21 @@ import AuthStackNavigator from "./src/navigation/Auth/authNavigator";
 import MainStackNavigator from "./src/navigation/Main/mainNavigator";
 import * as SplashScreen from "expo-splash-screen";
 import { View } from "react-native";
+import { useHomeStore } from "./src/features/home/store/homeStore";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
   const { token, getToken } = useAuthStore((state) => state);
+  const {fetchUser } = useHomeStore(state => state);
 
   useEffect(() => {
     async function prepare() {
       try {
         // Load token from local storage
         await getToken();
+        await fetchUser();
         // Artificially delay for two seconds to simulate a slow loading
         // experience. Please remove this if you copy and paste the code!
         //  await new Promise((resolve) => setTimeout(resolve, 2000));

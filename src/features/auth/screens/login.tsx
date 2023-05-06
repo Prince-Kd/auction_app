@@ -10,7 +10,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  ActivityIndicator
+  ActivityIndicator,
 } from "react-native";
 import { TextInput } from "react-native-paper";
 import { Formik } from "formik";
@@ -22,8 +22,7 @@ import { useState } from "react";
 export default function Login({ navigation }: any) {
   const screenHeight = Dimensions.get("window").height;
   const { login } = useAuthStore((state) => state);
-    const [showPassword, setShowPassword] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <KeyboardAvoidingView
@@ -48,9 +47,9 @@ export default function Login({ navigation }: any) {
               initialValues={{ uid: "", password: "" }}
               onSubmit={async (values: loginInterface, actions) => {
                 console.log(values);
-                // actions.setSubmitting(true);
-                // await login(values);
-                // actions.setSubmitting(false);
+                actions.setSubmitting(true);
+                await login(values);
+                actions.setSubmitting(false);
               }}
               validationSchema={loginValidationSchema}
             >
