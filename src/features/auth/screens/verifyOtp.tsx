@@ -12,7 +12,9 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { otpValidationSchema } from "../helpers/validationSchema";
-import OTPInputView from "@twotalltotems/react-native-otp-input";
+// import OTPInputView from "@twotalltotems/react-native-otp-input";
+import OtpInputs from "react-native-otp-inputs";
+
 
 export default function VerifyOtp() {
   return (
@@ -31,7 +33,7 @@ export default function VerifyOtp() {
           <Text
             style={{ fontSize: 20, textAlign: "center", fontWeight: "500" }}
           >
-            Login
+            Verify Code
           </Text>
           <View style={{ flex: 1, justifyContent: "center" }}>
             <Formik
@@ -53,7 +55,7 @@ export default function VerifyOtp() {
               }) => (
                 <>
                   <View style={{ marginBottom: 10 }}>
-                    <OTPInputView
+                    {/* <OTPInputView
                       // style={{ width: "80%", height: 200 }}
                       pinCount={6}
                       code={values.otp} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
@@ -63,8 +65,12 @@ export default function VerifyOtp() {
                       codeInputHighlightStyle={styles.otpFocused}
                       onCodeChanged={handleChange("otp")}
                       onCodeFilled={() => handleSubmit()  }
+                    /> */}
+                    <OtpInputs
+                      autofillFromClipboard={false}
+                      handleChange={handleChange('otp')}
+                      numberOfInputs={6}
                     />
-
                     {errors.otp && touched.otp && (
                       <Text style={{ color: "red" }}>{errors.otp}</Text>
                     )}
@@ -149,8 +155,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flex: 1,
     flexDirection: "column",
-    backgroundColor: "#ffffff",
-    padding: 20,
+    backgroundColor: "#000000",
   },
   scrollContainer: {
     padding: 20,
