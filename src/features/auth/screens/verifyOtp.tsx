@@ -12,11 +12,22 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { otpValidationSchema } from "../helpers/validationSchema";
-// import OTPInputView from "@twotalltotems/react-native-otp-input";
-import OtpInputs from "react-native-otp-inputs";
-
+import {
+  CodeField,
+  Cursor,
+  useBlurOnFulfill,
+  useClearByFocusCell,
+} from "react-native-confirmation-code-field";
+import { useState } from "react";
 
 export default function VerifyOtp() {
+  const [otp, setOtp] = useState("");
+  const ref = useBlurOnFulfill({ value: otp, cellCount: 6 });
+  const [props, getCellOnLayoutHandler] = useClearByFocusCell({
+    value: otp,
+    setValue: setOtp,
+  });
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -52,93 +63,73 @@ export default function VerifyOtp() {
                 errors,
                 touched,
                 isSubmitting,
-              }) => (
-                <>
-                  <View style={{ marginBottom: 10 }}>
-                    {/* <OTPInputView
-                      // style={{ width: "80%", height: 200 }}
-                      pinCount={6}
-                      code={values.otp} //You can supply this prop or not. The component will be used as a controlled / uncontrolled component respectively.
-                      // onCodeChanged = {code => { this.setState({code})}}
-                      autoFocusOnLoad
-                      codeInputFieldStyle={styles.otpDefault}
-                      codeInputHighlightStyle={styles.otpFocused}
-                      onCodeChanged={handleChange("otp")}
-                      onCodeFilled={() => handleSubmit()  }
-                    /> */}
-                    <OtpInputs
-                      autofillFromClipboard={false}
-                      handleChange={handleChange('otp')}
-                      numberOfInputs={6}
-                    />
-                    {errors.otp && touched.otp && (
-                      <Text style={{ color: "red" }}>{errors.otp}</Text>
-                    )}
-                  </View>
-
-                  <TouchableOpacity
-                    onPress={() => handleSubmit()}
-                    disabled={isSubmitting}
-                    style={{
-                      backgroundColor: "black",
-                      height: 60,
-                      justifyContent: "center",
-                      borderRadius: 30,
-                      marginVertical: 40,
-                    }}
-                  >
-                    {isSubmitting ? (
-                      <ActivityIndicator size={"large"} color={"white"} />
-                    ) : (
+              }) => {
+                return (
+                  <>
+                    <View style={{ marginBottom: 10 }}>
                       <Text
-                        style={{
-                          color: "white",
-                          textAlign: "center",
-                          fontSize: 15,
-                        }}
-                      >
-                        Verify
-                      </Text>
-                    )}
-                  </TouchableOpacity>
-                  {/* <Text
-              style={{ color: "gray", textAlign: "center", marginBottom: 20 }}
-            >
-              or login with
-            </Text>
-            <View style={{ flexDirection: "row", justifyContent: "center" }}>
-              <Pressable
-                style={{
-                  height: 40,
-                  width: 40,
-                  borderRadius: 20,
-                  borderColor: "gray",
-                  borderWidth: 1.5,
-                  marginRight: 20,
-                }}
-              ></Pressable>
-              <Pressable
-                style={{
-                  height: 40,
-                  width: 40,
-                  borderRadius: 20,
-                  borderColor: "gray",
-                  borderWidth: 1.5,
-                  marginRight: 20,
-                }}
-              ></Pressable>
-              <Pressable
-                style={{
-                  height: 40,
-                  width: 40,
-                  borderRadius: 20,
-                  borderColor: "gray",
-                  borderWidth: 1.5,
-                }}
-              ></Pressable>
-            </View> */}
-                </>
-              )}
+                        style={{ fontSize: 16, textAlign: "center" }}
+                      >{`Please enter the verification code \nwe sent to your email.`}</Text>
+                      <CodeField
+                        ref={ref}
+                        {...props}
+                        // Use `caretHidden={false}` when users can't paste a text value, because context menu doesn't appear
+                        value={values.otp}
+                        onChangeText={handleChange("otp")}
+                        cellCount={6}
+                        rootStyle={styles.codeFieldRoot}
+                        keyboardType="number-pad"
+                        textContentType="oneTimeCode"
+                        renderCell={({ index, symbol, isFocused }) => (
+                          <View
+                            onLayout={getCellOnLayoutHandler(index)}
+                            key={index}
+                            style={[
+                              styles.cellRoot,
+                              isFocused || symbol ? styles.focusCell : null,
+                            ]}
+                          >
+                            <Text style={styles.cellText}>
+                              {symbol || (isFocused ? <Cursor /> : null)}
+                            </Text>
+                          </View>
+                        )}
+                      />
+                    
+                      {errors.otp && touched.otp && (
+                        <Text style={{ color: "red" }}>{errors.otp}</Text>
+                      )}
+                    </View>
+
+                    <TouchableOpacity
+                      onPress={() => handleSubmit()}
+                      disabled={isSubmitting}
+                      style={{
+                        backgroundColor: "black",
+                        height: 60,
+                        justifyContent: "center",
+                        borderRadius: 30,
+                        marginVertical: 40,
+                      }}
+                    >
+                      {isSubmitting ? (
+                        <ActivityIndicator size={"large"} color={"white"} />
+                      ) : (
+                        <Text
+                          style={{
+                            color: "white",
+                            textAlign: "center",
+                            fontSize: 15,
+                          }}
+                        >
+                          Verify
+                        </Text>
+                      )}
+                    </TouchableOpacity>
+                    
+                  </>
+                );
+              }}
             </Formik>
           </View>
         </View>
@@ -176,12 +167,29 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     height: (screenHeight * 2) / 3,
   },
-  otpDefault: {
-    width: 30,
-    height: 50,
-    borderWidth: 0,
-    borderBottomWidth: 1,
-    borderColor: "gray"
+  codeFieldRoot: {
+    marginTop: 20,
+    gap: 10,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+
   },
-  otpFocused: {borderColor: "black"},
+  cellRoot: {
+    flex: 1,
+    height: 50,
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderBottomColor: "#ccc",
+    borderBottomWidth: 1,
+  },
+  cellText: {
+    color: "#000",
+    fontSize: 30,
+    textAlign: "center",
+  },
+  focusCell: {
+    borderBottomColor: "#007AFF",
+    borderBottomWidth: 2,
+  },
 });

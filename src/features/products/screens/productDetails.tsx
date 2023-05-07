@@ -263,155 +263,146 @@ export default function ProductDetails({ navigation }: any) {
         <View style={{ height: 95 }}></View>
       </ScrollView>
       {/* modal */}
-      <KeyboardAvoidingView
-        // style={{ flex: 1 }}
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        // enabled={false}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
+      <Modal
+        isVisible={showModal}
+        onBackdropPress={() => setShowModal(false)}
+        swipeDirection="down"
+        style={{ justifyContent: "flex-end", margin: 0 }}
       >
-        <Modal
-          isVisible={showModal}
-          onBackdropPress={() => setShowModal(false)}
-          swipeDirection="down"
-          style={{ justifyContent: "flex-end", margin: 0 }}
+        <View
+          style={{
+            backgroundColor: "white",
+            paddingTop: 16,
+            paddingHorizontal: 20,
+            paddingBottom: 5,
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+          }}
         >
           <View
             style={{
-              backgroundColor: "white",
-              paddingTop: 16,
-              paddingHorizontal: 20,
-              paddingBottom: 5,
-              borderTopLeftRadius: 20,
-              borderTopRightRadius: 20,
+              height: 4,
+              borderRadius: 2,
+              backgroundColor: "#eeeeee",
+              width: 80,
+              marginBottom: 20,
+              alignSelf: "center",
+            }}
+          ></View>
+          <View
+            style={{
+              backgroundColor: "#eeeeee",
+              borderRadius: 20,
+              padding: 15,
+              flexDirection: "row",
+              justifyContent: "space-between",
+              gap: 10,
+              marginBottom: 15,
             }}
           >
             <View
               style={{
-                height: 4,
-                borderRadius: 2,
-                backgroundColor: "#eeeeee",
-                width: 80,
-                marginBottom: 20,
-                alignSelf: "center",
+                height: 60,
+                width: 60,
+                borderRadius: 15,
+                backgroundColor: "black",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             ></View>
+            <View style={{ alignItems: "flex-start" }}>
+              <Text style={{ fontSize: 12, color: "gray" }}>CURRENT BID</Text>
+              <Text style={{ fontSize: 16, fontWeight: "500" }}>14,500 $</Text>
+              <Text style={{ fontSize: 12 }}>Bidding Fee: 10%</Text>
+            </View>
             <View
               style={{
-                backgroundColor: "#eeeeee",
+                backgroundColor: "#e1e2e3",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 5,
                 borderRadius: 20,
-                padding: 15,
-                flexDirection: "row",
-                justifyContent: "space-between",
-                gap: 10,
-                marginBottom: 15,
+                alignSelf: "flex-start",
+                padding: 3,
+                paddingHorizontal: 10,
               }}
             >
-              <View
+              <Ionicons name="time" size={15} color="black" />
+              <Text style={{ fontWeight: "500", fontSize: 13 }}>
+                3d 6h 48m 03s
+              </Text>
+            </View>
+          </View>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              gap: 20,
+            }}
+          >
+            <View
+              style={{
+                borderRadius: 10,
+                paddingVertical: 10,
+                backgroundColor: "black",
+                flex: 1,
+              }}
+            >
+              <Text
                 style={{
-                  height: 60,
-                  width: 60,
-                  borderRadius: 15,
-                  backgroundColor: "black",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              ></View>
-              <View style={{ alignItems: "flex-start" }}>
-                <Text style={{ fontSize: 12, color: "gray" }}>CURRENT BID</Text>
-                <Text style={{ fontSize: 16, fontWeight: "500" }}>
-                  14,500 $
-                </Text>
-                <Text style={{ fontSize: 12 }}>Bidding Fee: 10%</Text>
-              </View>
-              <View
-                style={{
-                  backgroundColor: "#e1e2e3",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: 5,
-                  borderRadius: 20,
-                  alignSelf: "flex-start",
-                  padding: 3,
-                  paddingHorizontal: 10,
+                  color: "white",
+                  textAlign: "center",
+                  fontWeight: "500",
+                  fontSize: 12,
                 }}
               >
-                <Ionicons name="time" size={15} color="black" />
-                <Text style={{ fontWeight: "500", fontSize: 13 }}>
-                  3d 6h 48m 03s
-                </Text>
-              </View>
+                14,600 $
+              </Text>
             </View>
             <View
               style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                gap: 20,
+                borderRadius: 10,
+                paddingVertical: 8,
+                backgroundColor: "black",
+                flex: 1,
               }}
             >
-              <View
+              <Text
                 style={{
-                  borderRadius: 10,
-                  paddingVertical: 10,
-                  backgroundColor: "black",
-                  flex: 1,
+                  color: "white",
+                  textAlign: "center",
+                  fontWeight: "500",
+                  fontSize: 12,
                 }}
               >
-                <Text
-                  style={{
-                    color: "white",
-                    textAlign: "center",
-                    fontWeight: "500",
-                    fontSize: 12,
-                  }}
-                >
-                  14,600 $
-                </Text>
-              </View>
-              <View
-                style={{
-                  borderRadius: 10,
-                  paddingVertical: 8,
-                  backgroundColor: "black",
-                  flex: 1,
-                }}
-              >
-                <Text
-                  style={{
-                    color: "white",
-                    textAlign: "center",
-                    fontWeight: "500",
-                    fontSize: 12,
-                  }}
-                >
-                  14,600 $
-                </Text>
-              </View>
-              <View
-                style={{
-                  borderRadius: 10,
-                  paddingVertical: 8,
-                  backgroundColor: "black",
-                  flex: 1,
-                }}
-              >
-                <Text
-                  style={{
-                    color: "white",
-                    textAlign: "center",
-                    fontWeight: "500",
-                    fontSize: 12,
-                  }}
-                >
-                  14,600 $
-                </Text>
-              </View>
+                14,600 $
+              </Text>
             </View>
-            <View style={{ flexDirection: "row", height: 50, marginTop: 20 }}>
+            <View
+              style={{
+                borderRadius: 10,
+                paddingVertical: 8,
+                backgroundColor: "black",
+                flex: 1,
+              }}
+            >
+              <Text
+                style={{
+                  color: "white",
+                  textAlign: "center",
+                  fontWeight: "500",
+                  fontSize: 12,
+                }}
+              >
+                14,600 $
+              </Text>
+            </View>
+          </View>
+          {/* <View style={{ flexDirection: "row", height: 50, marginTop: 20 }}>
               <View style={{ flex: 1 }}></View>
               <TextInput style={{ flex: 1, backgroundColor: "" }} />
               <View style={{ flex: 1 }}></View>
-            </View>
-          </View>
+            </View> */}
           <View style={{ flexDirection: "row", height: 50, marginTop: 20 }}>
             <View style={{ flex: 1 }}></View>
             <TextInput
@@ -446,9 +437,10 @@ export default function ProductDetails({ navigation }: any) {
               </Text>
             </TouchableOpacity>
           </View>
-          {/* </View> */}
-        </Modal>
-      </KeyboardAvoidingView>
+        </View>
+
+        {/* </View> */}
+      </Modal>
     </SafeAreaView>
   );
 }
