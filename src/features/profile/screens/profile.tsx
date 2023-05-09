@@ -1,4 +1,10 @@
-import { View, StyleSheet, Text, ScrollView, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import AppBar from "../../../components/appBar";
@@ -11,21 +17,24 @@ import { useBottomNavStore } from "../../../hooks/useBottomNavStore";
 
 export default function Account({ navigation }: any) {
   const { logout } = useAuthStore((state) => state);
-  const { updateActive } = useBottomNavStore(state => state);
+  const { updateActive } = useBottomNavStore((state) => state);
 
   return (
     <SafeAreaView style={{ position: "relative", flex: 1 }}>
       <ScrollView>
         <View style={styles.container}>
-          <AppBar title="My Account" />
+          <AppBar title="Profile" />
           <View style={{ paddingHorizontal: 20, paddingTop: 40 }}>
-            <View style={styles.listTile}>
+            <TouchableOpacity
+              style={styles.listTile}
+              onPress={() => navigation.navigate("Account Details")}
+            >
               <View style={{ flexDirection: "row", gap: 10 }}>
                 <Feather key="user" name="user" size={24} color="black" />
                 <Text style={{ fontSize: 18 }}>Account</Text>
               </View>
               <Feather name="chevron-right" size={24} color="black" />
-            </View>
+            </TouchableOpacity>
             <View style={styles.listTile}>
               <View style={{ flexDirection: "row", gap: 10 }}>
                 <Feather key="map-pin" name="map-pin" size={24} color="black" />
@@ -72,7 +81,10 @@ export default function Account({ navigation }: any) {
               <Feather name="chevron-right" size={24} color="black" />
             </View>
             <Divider />
-            <TouchableOpacity style={styles.listTile} onPress={() => logout(updateActive)}>
+            <TouchableOpacity
+              style={styles.listTile}
+              onPress={() => logout(updateActive)}
+            >
               <View style={{ flexDirection: "row", gap: 10 }}>
                 <Feather key="logout" name="log-out" size={24} color="red" />
                 <Text style={{ fontSize: 18, color: "red" }}>logout</Text>
