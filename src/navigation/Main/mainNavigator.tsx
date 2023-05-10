@@ -7,6 +7,7 @@ import Profile from "../../features/profile/screens/profile";
 import HomeStack from "./homeStack";
 import CreateAuction from "../../features/auction/screens/createAuction";
 import Notifications from "../../features/notifications/screens/notifications";
+import ProfileStack from "./profileStack";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,7 +18,7 @@ export default function MainStackNavigator() {
     <Favorite />,
     <CreateAuction />,
     <Notifications />,
-    <Profile />,
+    <ProfileStack />,
   ];
   return routes[activeIndex];
 }

@@ -23,7 +23,7 @@ export default function AccountDetails({ navigation }: any) {
         }}
       >
         <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
-          <TouchableOpacity onPress={() => navigation.navigate("Account")}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
             <MaterialIcons name="arrow-back-ios" size={24} color="black" />
           </TouchableOpacity>
           <Text style={{ fontSize: 18, fontWeight: "500" }}>Account</Text>
